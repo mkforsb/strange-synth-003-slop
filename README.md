@@ -12,6 +12,9 @@ cd app && dx serve --platform web          # dev server, or:
 cd .. && ./build-app.sh                    # release bundle in target/dx/strange-app/release/web/public
 ```
 
+The release bundle uses only relative paths, so `public/` can be copied to any subfolder of a web server
+(open it with a trailing slash, e.g. `https://example.com/some/dir/`).
+
 Click **ENTER THE MACHINE** (browsers need a gesture to start audio). Play with the on-screen keys or
 the computer keyboard (`Z S X D C V G B H N J M` lower row, `Q 2 W 3 E R 5 T 6 Y 7 U` upper row, `[` `]` = octave).
 

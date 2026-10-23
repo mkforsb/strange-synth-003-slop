@@ -11,6 +11,11 @@ const MAIN_CSS: Asset = asset!("/assets/main.css");
 const WORKLET_JS: Asset = asset!("/assets/worklet.js");
 const DSP_WASM: Asset = asset!("/assets/dsp.wasm");
 
+/// Asset URL relative to the page, so the bundle works from any subfolder (Dioxus always emits `/assets/...`).
+fn asset_url(a: Asset) -> String {
+    a.to_string().trim_start_matches('/').to_string()
+}
+
 /// Preset loaded on startup.
 const START_PRESET: usize = 2;
 
@@ -236,7 +241,7 @@ fn App() -> Element {
     });
 
     rsx! {
-        document::Stylesheet { href: MAIN_CSS }
+        document::Stylesheet { href: asset_url(MAIN_CSS) }
         div {
             class: "app",
             onpointermove: move |e: PointerEvent| {
@@ -286,7 +291,7 @@ fn Overlay() -> Element {
                         let mut status = s.status;
                         spawn(async move {
                             status.set("waking the machine…".into());
-                            match audio::start(WORKLET_JS.to_string(), DSP_WASM.to_string()).await {
+                            match audio::start(asset_url(WORKLET_JS), asset_url(DSP_WASM)).await {
                                 Ok(()) => {
                                     s.push_all();
                                     running.set(true);
