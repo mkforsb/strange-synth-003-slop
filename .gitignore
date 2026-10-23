@@ -1,0 +1,5 @@
+target/
+app/assets/dsp.wasm
+dist/
+out/
+*.wav

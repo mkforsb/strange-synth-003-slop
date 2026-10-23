@@ -1,0 +1,19 @@
+[package]
+name = "strange-app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { version = "0.7", features = ["web"] }
+strange-dsp = { path = "../dsp" }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+gloo-timers = { version = "0.3", features = ["futures"] }
+web-sys = { version = "0.3", features = [
+    "AudioContext", "AudioDestinationNode", "AudioNode", "AudioWorklet", "AudioWorkletNode",
+    "AudioWorkletNodeOptions", "AnalyserNode", "ChannelSplitterNode", "BaseAudioContext",
+    "MessagePort", "Window", "Response", "Document", "Element", "HtmlCanvasElement",
+    "CanvasRenderingContext2d", "KeyboardEvent", "EventTarget", "HtmlElement", "Performance",
+    "ImageData", "console", "CanvasGradient",
+] }
